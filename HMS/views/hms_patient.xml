@@ -39,7 +39,7 @@
                         <group>
                             <field name="address"/>
                             <field name="age"/>
-                            <field name="doctor_ids" widget="many2many_tags"/>
+                             <field name="doctor_ids" widget="many2many_tags" groups="hms.group_hms_manager"/>
                             <field name="department_id"/>
                             <field name="department_capacity" readonly="1"/>
                         </group>

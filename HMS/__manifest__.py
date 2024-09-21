@@ -8,11 +8,11 @@
     "depends": ["base", "crm"],
     "application": True,
     "data": [
+        "security/group.xml",
         "views/base_manus.xml",
         "views/hms_patient.xml",
         "views/hms_department.xml",
         "views/hms_doctor.xml",
         "security/ir.model.access.csv",
-        "security/group.xml"
     ]
 }

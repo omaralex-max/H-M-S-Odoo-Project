@@ -1,0 +1,83 @@
+<odoo>
+    <record id="hospital_category" model="ir.module.category">
+        <field name="name">Hospital</field>
+    </record>
+
+    <!-- Define new group -->
+    <record id="group_hms_user" model="res.groups">
+        <field name="name">HMS User</field>
+        <field name="category_id" ref="hospital_category"/> <!-- Correct reference -->
+    </record>
+
+    <record id="group_hms_manager" model="res.groups">
+        <field name="name">Hospital Manager</field>
+        <field name="category_id" ref="hospital_category"/> <!-- Correct reference -->
+    </record>
+
+    <!-- Record rule: User can only access their own patients -->
+    <record id="hms_patient_rule_user" model="ir.rule">
+        <field name="name">Patient: Access Own Records</field>
+        <field name="model_id" ref="model_hms_patient"/>
+        <field name="groups" eval="[(4, ref('group_hms_user'))]"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="hms_patient_manager_access" model="ir.model.access">
+        <field name="name">hms_patient_manager_access</field>
+        <field name="model_id" ref="model_hms_patient"/>
+        <field name="group_id" ref="group_hms_manager"/>  <!-- Correct reference -->
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <!-- Record rule: Read-only access to departments -->
+    <record id="hms_department_rule_user" model="ir.rule">
+        <field name="name">Department: Read Only</field>
+        <field name="model_id" ref="model_hms_department"/>
+        <field name="groups" eval="[(4, ref('group_hms_user'))]"/>
+        <field name="domain_force">[]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="hms_department_manager_access" model="ir.model.access">
+        <field name="name">hms_department_manager_access</field>
+        <field name="model_id" ref="model_hms_department"/>
+        <field name="group_id" ref="group_hms_manager"/>  <!-- Correct reference -->
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <!-- Record rule: Read-only access to doctors -->
+    <record id="hms_doctor_rule_user" model="ir.rule">
+        <field name="name">Doctor: Read Only</field>
+        <field name="model_id" ref="model_hms_doctor"/>
+        <field name="groups" eval="[(4, ref('group_hms_user'))]"/>
+        <field name="domain_force">[]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="hms_doctor_manager_access" model="ir.model.access">
+        <field name="name">hms_doctor_manager_access</field>
+        <field name="model_id" ref="model_hms_doctor"/>
+        <field name="group_id" ref="group_hms_manager"/>  <!-- Correct reference -->
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>

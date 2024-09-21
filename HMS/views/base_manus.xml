@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Main HMS Menu -->
+    <menuitem id="menu_hms" name="HMS"/>
+
+    <!-- Patients Menu (Visible to All Users) -->
+    <menuitem id="menu_patient_root" name="Patients" parent="menu_hms"/>
+
+    <!-- Departments Menu (Visible to All Users) -->
+    <menuitem id="menu_department_root" name="Departments" parent="menu_hms"/>
+
+    <!-- Doctors Menu (Visible to Managers) -->
+    <menuitem id="menu_doctor_root" name="Doctors" parent="menu_hms" groups="HMS.group_hms_manager"/>
+</odoo>

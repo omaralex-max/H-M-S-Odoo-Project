@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hms_patient_user,access_hms_patient_user,model_hms_patient,group_hms_user,1,1,1,0
+access_hms_department_user,access_hms_department_user,model_hms_department,group_hms_user,1,0,0,0
+access_hms_doctor_user,access_hms_doctor_user,model_hms_doctor,group_hms_user,1,0,0,0
+access_hms_patient_history,access_hms_patient_history,model_hms_patient_history,group_hms_user,1,1,1,0
+
+# Access for Manager Group (example for CRUD access)
+access_hms_patient_manager,access_hms_patient_manager,model_hms_patient,group_hms_manager,1,1,1,1
+access_hms_department_manager,access_hms_department_manager,model_hms_department,group_hms_manager,1,1,1,1
+access_hms_doctor_manager,access_hms_doctor_manager,model_hms_doctor,group_hms_manager,1,1,1,1
