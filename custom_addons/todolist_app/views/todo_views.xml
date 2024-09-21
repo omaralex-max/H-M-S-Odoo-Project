@@ -1,0 +1,54 @@
+<odoo>
+    <!-- Tree View for Tickets -->
+    <record id="view_todo_ticket_tree" model="ir.ui.view">
+        <field name="name">todo.ticket.tree</field>
+        <field name="model">todo.ticket</field>
+        <field name="arch" type="xml">
+            <tree string="To-Do Tickets">
+                <field name="name"/>
+                <field name="number"/>
+                <field name="tag"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Tickets -->
+    <record id="view_todo_ticket_form" model="ir.ui.view">
+        <field name="name">todo.ticket.form</field>
+        <field name="model">todo.ticket</field>
+        <field name="arch" type="xml">
+            <form string="To-Do Ticket">
+                <header>
+                    <button name="action_new" type="object" class="btn-danger" string="New" invisible="state != 'done'"/>
+                    <button name="action_doing" type="object" class="btn-warning" string="Doing" invisible="state != 'new'"/>
+                    <button name="action_done" type="object" class="btn-success" string="Done" invisible="state != 'doing'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="number"/>
+                        <field name="tag"/>
+                        <field name="file"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Tickets -->
+    <record id="todo_ticket_action" model="ir.actions.act_window">
+        <field name="name">To-Do Tickets</field>
+        <field name="res_model">todo.ticket</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item for Tickets -->
+    <menuitem id="menu_todo_tickets"
+              name="Tickets"
+              parent="menu_todo_root"
+              sequence="1"
+              action="todo_ticket_action"/>
+</odoo>

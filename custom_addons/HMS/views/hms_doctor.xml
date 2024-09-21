@@ -1,0 +1,54 @@
+<odoo>
+    <record id="view_hms_doctor_tree" model="ir.ui.view">
+        <field name="name">hms.doctor.tree</field>
+        <field name="model">hms.doctor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="first_name"/>
+                <field name="last_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hms_doctor_form" model="ir.ui.view">
+        <field name="name">hms.doctor.form</field>
+        <field name="model">hms.doctor</field>
+        <field name="arch" type="xml">
+            <form string="Doctor Form">
+                <sheet>
+                    <group>
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <field name="patient_ids" widget="many2many_tags" />
+                        <field name="department_id" readonly="1"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hms_doctor_search" model="ir.ui.view">
+        <field name="name">hms.doctor.search</field>
+        <field name="model">hms.doctor</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="first_name"/>
+                <field name="last_name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="hms_doctor_action" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hms.doctor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hms_doctor_tree"/>
+    </record>
+
+    <menuitem id="menu_hms_doctors"
+              name="Doctors"
+              parent="menu_doctor_root"
+              action="hms_doctor_action"/>
+</odoo>
